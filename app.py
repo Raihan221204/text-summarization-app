@@ -1,42 +1,19 @@
 import streamlit as st
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 import torch
-import fitz  
+import fitz
 from langdetect import detect
 import matplotlib.pyplot as plt
 from collections import Counter
 import re
-import gdown
-import zipfile
 import os
-
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Text Summarization", layout="centered")
 
-# ID file Google Drive yang berisi folder model (file ZIP)
-google_drive_file_id = "1yGYKv-wqR6QdSlQqabx1qiuFQnO1X_Xu" 
+# Load model dari Hugging Face
+MODEL_PATH = "Raihan2212/summarization-model"
 
-# URL untuk mendownload file ZIP
-download_url = f"https://drive.google.com/uc?export=download&id={google_drive_file_id}"
-
-# Unduh file ZIP
-zip_file = "model.zip"
-gdown.download(download_url, zip_file, quiet=False)
-
-# Ekstrak ZIP
-if zipfile.is_zipfile(zip_file):
-    with zipfile.ZipFile(zip_file, 'r') as zip_ref:
-        zip_ref.extractall("summarization_model")  # Folder untuk mengekstrak file
-else:
-    print("File bukan ZIP yang valid")
-
-# Sekarang model akan berada di folder 'summarization_model' dan bisa dimuat
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-
-MODEL_PATH = "summarization_model"
-
-# Load model dan tokenizer
 @st.cache_resource
 def load_model():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
