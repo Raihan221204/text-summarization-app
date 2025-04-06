@@ -1,8 +1,7 @@
-fitz==0.0.1.dev2
-gdown==5.2.0
+PyMuPDF==1.18.19
+gdown==4.0.0
 langdetect==1.0.9
 matplotlib==3.10.1
-streamlit==1.42.2
+streamlit==1.12.0
 torch==2.6.0
-transformers==4.51.0
-PyMuPDF==1.18.19
+transformers==4.24.0
