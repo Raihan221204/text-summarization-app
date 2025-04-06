@@ -1,7 +1,7 @@
 import streamlit as st
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 import torch
-import fitz
+import PyMuPDF  
 from langdetect import detect
 import matplotlib.pyplot as plt
 from collections import Counter
